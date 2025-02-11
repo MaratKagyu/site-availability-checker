@@ -5,7 +5,7 @@ namespace App\Service;
 class SourceListService
 {
     public function __construct(
-        private readonly string $endpointList
+        private readonly string $endpointList,
     )
     {
     }
@@ -17,9 +17,20 @@ class SourceListService
             explode("\n", $this->endpointList)
         );
 
-        return array_values(array_filter(
+        $sourceList = array_values(array_filter(
             $sourceList,
             fn(string $value) => !!$value
         ));
+
+        return array_map(
+            function(string $value) {
+                $valueList = explode(" - ", $value);
+                return [
+                    "name" => $valueList[1] ?? $valueList[0],
+                    "endpoint" => $valueList[0],
+                ];
+            },
+            $sourceList
+        );
     }
 }

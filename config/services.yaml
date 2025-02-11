@@ -13,6 +13,9 @@ services:
 
         bind:
             $endpointList: '%env(default::ENDPOINT_LIST)%'
+            $authToken: '%env(default::ENDPOINT_LIST)%'
+            $authPassphrase: '%env(default::AUTH_PASSPHRASE)%'
+
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -22,6 +25,10 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+
+    App\EventSubscriber\ExceptionSubscriber:
+        tags:
+            - { name: 'kernel.event_subscriber' }
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
