@@ -2,7 +2,7 @@
 
 const PASSPHRASE = 'ThisIsMyBoomstick!';
 const SERVER_URL = 'http://localhost';
-const CLIENT_NAME = 'John Snow';
+const CLIENT_NAME = 'John Snow(JS)';
 const DO_VERBOSE = true;
 
 const log = (data) => {
@@ -98,7 +98,6 @@ const main = async () => {
         if (!saveResultsResponse.ok) {
             throw new Error("WARNING! Couldn't save the results. Exiting....");
         }
-
     } catch (error) {
         log("WARNING! Couldn't save the results. Exiting....");
     }
