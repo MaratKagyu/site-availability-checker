@@ -28,7 +28,7 @@ get_current_milliseconds() {
       milliseconds=$((microseconds/1000))
       echo $(($(date +%s)*1000 + milliseconds))
   else
-      echo "(date +%s%3N)"
+      echo "$(date +%s%3N)"
   fi
 }
 
