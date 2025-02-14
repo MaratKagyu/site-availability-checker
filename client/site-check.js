@@ -1,9 +1,10 @@
 
 
-const PASSPHRASE = 'ThisIsMyBoomstick!';
-const SERVER_URL = 'http://localhost';
-const CLIENT_NAME = 'John Snow(JS)';
+const PASSPHRASE = 'SudoMakeMeCoffee!';
+const SERVER_URL = 'http://statworker.gateway.maratms.com';
+const CLIENT_NAME = 'MaratMS';
 const DO_VERBOSE = true;
+const TRIES_COUNT = 3;
 
 const log = (data) => {
     if (!DO_VERBOSE) {
@@ -49,9 +50,8 @@ const main = async () => {
     await Promise.all(endpointList.map(async (record) => {
         const urlToCheck = record.endpoint;
 
-        const tryAmount = 3;
         const tries = [];
-        for (let tryIdx = 0; tryIdx < tryAmount; tryIdx++ ) {
+        for (let tryIdx = 0; tryIdx < TRIES_COUNT; tryIdx++ ) {
             let timingMilliseconds = 999999999; // -1 means the site is not reachable
             const tsStart = Date.now();
 
@@ -101,8 +101,6 @@ const main = async () => {
     } catch (error) {
         log("WARNING! Couldn't save the results. Exiting....");
     }
-
-
 
     log('Done');
 };
